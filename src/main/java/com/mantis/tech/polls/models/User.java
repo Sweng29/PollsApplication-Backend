@@ -33,6 +33,10 @@ public class User extends AuditDate {
     @NotBlank(message = "Password should not be empty.")
     @NotNull(message = "Password should not be null.")
     private String password;
+    @NotBlank(message = "Email Address should not be empty.")
+    @NotNull(message = "Email Address should not be null.")
+    @Column(nullable = false, unique = true)
+    private String emailAddress;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -40,4 +44,51 @@ public class User extends AuditDate {
     )
     private Set<Role> userRoles = new HashSet<Role>();
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public Set<Role> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<Role> userRoles) {
+        this.userRoles = userRoles;
+    }
 }

@@ -25,4 +25,20 @@ public class Role extends AuditDate {
     @NaturalId
     @Column(length = 60)
     private RoleName roleName;
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    public RoleName getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
+    }
 }
