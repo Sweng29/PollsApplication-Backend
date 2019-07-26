@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserPrinciple implements UserDetails {
+public class UserPrincipal implements UserDetails {
 
     private Long userId;
     private String name;
@@ -27,10 +27,10 @@ public class UserPrinciple implements UserDetails {
 
     private Collection<? extends GrantedAuthority> grantedAuthorities;
 
-    public UserPrinciple() {
+    public UserPrincipal() {
     }
 
-    public UserPrinciple(Long userId, String name, String userName, String password, String emailAddress, Collection<? extends GrantedAuthority> grantedAuthorities) {
+    public UserPrincipal(Long userId, String name, String userName, String password, String emailAddress, Collection<? extends GrantedAuthority> grantedAuthorities) {
         this.userId = userId;
         this.name = name;
         this.userName = userName;
@@ -39,10 +39,10 @@ public class UserPrinciple implements UserDetails {
         this.grantedAuthorities = grantedAuthorities;
     }
 
-    public static UserPrinciple create(User user) {
+    public static UserPrincipal create(User user) {
         List<GrantedAuthority> grantedAuthorityList = user.getUserRoles().stream().map(
                 role -> new SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
-        return new UserPrinciple(
+        return new UserPrincipal(
                 user.getUserId(),
                 user.getName(),
                 user.getUserName(),
@@ -102,7 +102,7 @@ public class UserPrinciple implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserPrinciple that = (UserPrinciple) o;
+        UserPrincipal that = (UserPrincipal) o;
         return Objects.equals(userId, that.userId);
     }
 
