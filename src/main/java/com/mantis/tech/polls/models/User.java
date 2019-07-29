@@ -1,9 +1,7 @@
 package com.mantis.tech.polls.models;
 
 import com.mantis.tech.polls.models.audit.AuditDate;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,8 +11,8 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
+/*@AllArgsConstructor
+@NoArgsConstructor*/
 @Getter
 @Setter
 @Entity
@@ -29,7 +27,7 @@ public class User extends AuditDate {
     private String name;
     @Column(nullable = false,unique = true)
     private String userName;
-    @Size(min = 6,message = "Passwor should be of minimum 6 characters.")
+    @Size(min = 6, message = "Password should be of minimum 6 characters.")
     @NotBlank(message = "Password should not be empty.")
     @NotNull(message = "Password should not be null.")
     private String password;
@@ -43,6 +41,21 @@ public class User extends AuditDate {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> userRoles = new HashSet<Role>();
+
+    public User(@NotNull(message = "Name should not be null.") @NotBlank(message = "Name should not be empty.") String name, String userName, @Size(min = 6, message = "Password should be of minimum 6 characters.") @NotBlank(message = "Password should not be empty.") @NotNull(message = "Password should not be null.") String password, @NotBlank(message = "Email Address should not be empty.") @NotNull(message = "Email Address should not be null.") String emailAddress) {
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.emailAddress = emailAddress;
+    }
+
+    public User(@NotNull(message = "Name should not be null.") @NotBlank(message = "Name should not be empty.") String name, String userName, @Size(min = 6, message = "Password should be of minimum 6 characters.") @NotBlank(message = "Password should not be empty.") @NotNull(message = "Password should not be null.") String password, @NotBlank(message = "Email Address should not be empty.") @NotNull(message = "Email Address should not be null.") String emailAddress, Set<Role> userRoles) {
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.userRoles = userRoles;
+    }
 
     public Long getUserId() {
         return userId;

@@ -2,8 +2,6 @@ package com.mantis.tech.polls.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mantis.tech.polls.models.User;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,8 +11,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
-@NoArgsConstructor
+/*@AllArgsConstructor
+@NoArgsConstructor*/
 public class UserPrincipal implements UserDetails {
 
     private Long userId;
@@ -27,8 +25,6 @@ public class UserPrincipal implements UserDetails {
 
     private Collection<? extends GrantedAuthority> grantedAuthorities;
 
-    public UserPrincipal() {
-    }
 
     public UserPrincipal(Long userId, String name, String userName, String password, String emailAddress, Collection<? extends GrantedAuthority> grantedAuthorities) {
         this.userId = userId;
